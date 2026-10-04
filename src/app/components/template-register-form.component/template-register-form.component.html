@@ -1,0 +1,65 @@
+<form (ngSubmit)="onSubmit()" #registerRequestForm="ngForm">
+  <div>
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      required
+      minlength="4"
+      appForbiddenName="boob"
+      [(ngModel)]="model.username"
+      name="name"
+      #username="ngModel"
+    />
+
+    TODO: remove this: {{ model.username }}
+
+    @if (username.invalid && (username.dirty || username.touched)) {
+      <div class="alert">
+        @if (username.hasError('required')) {
+          <div>Name is required.</div>
+        }
+        @if (username.hasError('minlength')) {
+          <div>Name must be at least 4 characters long.</div>
+        }
+        @if (username.hasError('forbiddenName')) {
+          <div>Name cannot be Boob.</div>
+        }
+      </div>
+    }
+  </div>
+
+  <div>
+    <label for="email">E-Mail</label>
+    <input
+      type="text"
+      id="email"
+      required
+      [(ngModel)]="model.email"
+      name="email"
+    />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      required
+      [(ngModel)]="model.password"
+      name="password"
+    />
+  </div>
+  <div>
+    <label for="passwordConfirmation">Confirm Password</label>
+    <input
+      type="password"
+      id="passwordConfirmation"
+      required
+      [(ngModel)]="model.passwordConfirmation"
+      name="passwordConfirmation"
+    />
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!registerRequestForm.form.valid">
+    Submit
+  </button>
+</form>

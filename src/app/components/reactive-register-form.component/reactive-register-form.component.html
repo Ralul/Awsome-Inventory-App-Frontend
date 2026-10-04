@@ -1,0 +1,54 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Username</label>
+    <input
+      type="text"
+      id="username"
+      formControlName="username"
+    />
+
+    @if (username.invalid && (username.dirty || username.touched)) {
+      <div class="alert alert-danger">
+        @if (username.hasError('required')) {
+          <div>Name is required.</div>
+        }
+        @if (username.hasError('minlength')) {
+          <div>Name must be at least 4 characters long.</div>
+        }
+        @if (username.hasError('forbiddenName')) {
+          <div>Name cannot be Bob.</div>
+        }
+      </div>
+    }
+
+    TODO: remove this: {{ registerForm.value.username }}
+
+  </div>
+  <div>
+    <label for="email">E-Mail</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+    />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+    />
+  </div>
+  <div>
+    <label for="passwordConfirmation">Confirm Password</label>
+    <input
+      type="password"
+      id="passwordConfirmation"
+      formControlName="passwordConfirmation"
+    />
+  </div>
+  <button type="submit" [disabled]="!registerForm.valid">
+    Submit
+  </button>
+</form>
