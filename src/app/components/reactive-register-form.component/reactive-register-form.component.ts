@@ -30,16 +30,5 @@ export class ReactiveRegisterFormComponent {
   }
 
   async onSubmit() {
-    console.log(this.registerForm.value);
-
-    const dto = {
-      username: this.registerForm.controls.username.value,
-      email: this.registerForm.controls.email.value,
-      password: this.registerForm.controls.password.value,
-      passwordConfirmation: this.registerForm.controls.password.value,
-    } as RegisterRequest;
-
-    const response = await this.usersService.register(dto);
-    console.log(response);
   }
 }

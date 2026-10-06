@@ -1,27 +1,13 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Username</label>
     <input
       type="text"
       id="username"
-      formControlName="username"
+      [formControl]="username"
     />
 
-    @if (username.invalid && (username.dirty || username.touched)) {
-      <div class="alert alert-danger">
-        @if (username.hasError('required')) {
-          <div>Name is required.</div>
-        }
-        @if (username.hasError('minlength')) {
-          <div>Name must be at least 4 characters long.</div>
-        }
-        @if (username.hasError('forbiddenName')) {
-          <div>Name cannot be Bob.</div>
-        }
-      </div>
-    }
-
-    TODO: remove this: {{ registerForm.value.username }}
+    Value: {{username.value}}
 
   </div>
   <div>
@@ -29,7 +15,7 @@
     <input
       type="email"
       id="email"
-      formControlName="email"
+      [formControl]="email"
     />
   </div>
   <div>
@@ -37,7 +23,7 @@
     <input
       type="password"
       id="password"
-      formControlName="password"
+      [formControl]="password"
     />
   </div>
   <div>
@@ -45,10 +31,10 @@
     <input
       type="password"
       id="passwordConfirmation"
-      formControlName="passwordConfirmation"
+      [formControl]="passwordConfirmation"
     />
   </div>
-  <button type="submit" [disabled]="!registerForm.valid">
+  <button type="submit" >
     Submit
   </button>
 </form>
