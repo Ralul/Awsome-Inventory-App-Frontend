@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePage } from './home-page/home-page';
-import { TemplateRegister } from './pages/register/template-register/template-register';
-import { ReactiveRegister } from './pages/register/reactive-register/reactive-register.component';
+import { RegisterPage } from './pages/register.page/register.page';
 
 export const routes: Routes = [
   {
@@ -9,11 +8,7 @@ export const routes: Routes = [
     component: HomePage,
   },
   {
-    path: 'register/template',
-    component: TemplateRegister,
-  },
-  {
-    path: 'register/reactive',
-    component: ReactiveRegister,
+    path: 'register',
+    component: RegisterPage,
   },
 ];

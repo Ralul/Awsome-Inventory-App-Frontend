@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterRequest } from '../models/registerRequest';
+import { RegisterForm } from '../forms/registerForm';
 import { lastValueFrom } from 'rxjs';
-import { AuthenticateResponse } from '../models/authenticateResponse';
+import { AuthenticateResponse } from '../dtos/authenticateResponse';
+import { RegisterRequest } from '../dtos/registerRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class UsersApiService {
   public async register(request: RegisterRequest): Promise<AuthenticateResponse> {
     try {
       return await lastValueFrom(
-        this.http.post<AuthenticateResponse>('http://localhost:5174/users/register', request),
+        this.http.post<AuthenticateResponse>('/api/users/register', request),
       );
     } catch (error) {
       console.error(error);
