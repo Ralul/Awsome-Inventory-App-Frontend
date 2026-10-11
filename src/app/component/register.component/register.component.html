@@ -1,0 +1,29 @@
+<form (submit)="onSubmit($event)">
+  <div>
+    <label>
+      Username
+    </label>
+    <input type="text" [formField]="registerForm.username">
+  </div>
+  <div>
+    <label>
+      E-Mail
+    </label>
+    <input type="email" [formField]="registerForm.email">
+  </div>
+  <div>
+    <label>
+      Password
+    </label>
+    <input type="password" [formField]="registerForm.password">
+  </div>
+  <div>
+    <label>
+      Confirm Password
+    </label>
+    <input type="password" [formField]="registerForm.passwordConfirmation">
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>

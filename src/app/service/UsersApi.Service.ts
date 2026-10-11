@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterForm } from '../forms/registerForm';
 import { lastValueFrom } from 'rxjs';
 import { AuthenticateResponse } from '../dtos/authenticateResponse';
 import { RegisterRequest } from '../dtos/registerRequest';
