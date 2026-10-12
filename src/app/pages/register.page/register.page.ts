@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RegisterForm } from '../../forms/registerForm';
 import { RegisterComponent } from '../../component/register.component/register.component';
-import { UsersApiService } from '../../service/UsersApi.Service';
+import { UsersApiService } from '../../service/UsersApi.service';
 import { RegisterRequest } from '../../dtos/registerRequest';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../service/Authentication.service';
 
 @Component({
   selector: 'register.page',
@@ -11,14 +13,20 @@ import { RegisterRequest } from '../../dtos/registerRequest';
   imports: [RegisterComponent],
 })
 export class RegisterPage {
-  private readonly userApiService = inject(UsersApiService)
+  private readonly userApiService = inject(UsersApiService);
+  private router = inject(Router);
+  private authentication = inject(AuthenticationService)
 
-  onSubmit(form: RegisterForm) {
+  async onSubmit(form: RegisterForm) {
     const request = {
       username: form.username,
       email: form.email,
       password: form.password,
     } as RegisterRequest;
-    this.userApiService.register(request)
+    const result = await this.userApiService.register(request);
+
+    this.authentication.setUser(result)
+    await this.router.navigate(['/', 'items']);
+
   }
 }
