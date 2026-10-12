@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './home-page/home-page';
-import { RegisterPage } from './pages/register.page/register.page';
-import { Items } from './pages/items/items';
+import { HomePage } from './pages/home-page/home-page';
+import { RegisterPage } from './pages/register-page/register-page';
+import { ItemsPage } from './pages/items-page/items-page';
+import { LoginPage } from './pages/login-page/login-page';
 
 export const routes: Routes = [
   {
@@ -13,7 +14,11 @@ export const routes: Routes = [
     component: RegisterPage,
   },
   {
+    path: 'login',
+    component: LoginPage,
+  },
+  {
     path: 'items',
-    component: Items,
+    component: ItemsPage,
   }
 ];

@@ -1,12 +1,33 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { UserResponse } from '../dtos/userResponse';
+import { jwtDecode } from 'jwt-decode';
+import moment from 'moment';
+import IUserResponse from '../Interfaces/IUserResponse';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private user: UserResponse | undefined;
+  private platformId = inject(PLATFORM_ID)
+
+  isLoggedIn(): boolean {
+    this.checkForLocalStorage()
+
+    if (this.user !== undefined) {
+      const result = jwtDecode(this.user.token);
+      if (result.exp !== undefined) {
+        if (moment().isBefore(result.exp * 1000)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 
   setUser(user: UserResponse) {
     this.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   getToken(): string {
@@ -14,6 +35,15 @@ export class AuthenticationService {
       return this.user.token;
     } else {
       throw new Error('User is not authenticated');
+    }
+  }
+
+  private checkForLocalStorage() {
+    if (this.user === undefined && isPlatformBrowser(this.platformId)) {
+      const str = localStorage.getItem('user');
+      if (str !== null) {
+        this.user = JSON.parse(str) as IUserResponse;
+      }
     }
   }
 }

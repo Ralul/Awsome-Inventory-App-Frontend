@@ -3,11 +3,11 @@ import { ItemsApiService } from '../../service/ItemsApi.service';
 import { ItemResponse } from '../../dtos/ItemResponse';
 
 @Component({
-  selector: 'app-items',
-  styleUrl: './items.css',
-  templateUrl: './items.html',
+  selector: 'app-items-page',
+  styleUrl: './items-page.css',
+  templateUrl: './items-page.html',
 })
-export class Items {
+export class ItemsPage {
   public readonly itemsApiService = inject(ItemsApiService);
 
   items = signal<ItemResponse[]>([

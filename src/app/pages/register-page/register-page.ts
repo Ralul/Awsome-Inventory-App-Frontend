@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/Authentication.service';
 
 @Component({
-  selector: 'register.page',
-  styleUrl: './register.page.css',
-  templateUrl: './register.page.html',
+  selector: 'register-page',
+  styleUrl: './register-page.css',
+  templateUrl: './register-page.html',
   imports: [RegisterComponent],
 })
 export class RegisterPage {

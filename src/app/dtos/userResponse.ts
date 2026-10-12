@@ -1,4 +1,6 @@
-export class UserResponse {
+import IUserResponse from '../Interfaces/IUserResponse';
+
+export class UserResponse implements IUserResponse {
   public id: string;
   public username: string;
   public email: string;
