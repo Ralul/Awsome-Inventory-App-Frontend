@@ -13,8 +13,10 @@ export class ItemsApiService {
 
   public async getItems(): Promise<ItemResponse[]> {
     try {
-      let headers = new HttpHeaders()
-        .set('Authorization', 'Bearer ' + this.AuthenticationService.getToken());
+      const headers: HttpHeaders = new HttpHeaders().set(
+        'Authorization',
+        'Bearer ' + this.AuthenticationService.getToken(),
+      );
       const request = this.http.get<ItemResponse[]>('api/items', { headers });
       return lastValueFrom(request);
     } catch (error) {

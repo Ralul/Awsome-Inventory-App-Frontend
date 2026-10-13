@@ -1,12 +1,12 @@
-import IUserResponse from '../Interfaces/IUserResponse';
+import { TUserResponse } from '../Interfaces/TUserResponse';
 
-export class UserResponse implements IUserResponse {
+export class UserResponse implements TUserResponse {
   public id: string;
   public username: string;
   public email: string;
   public token: string;
 
-  constructor(id: string, username: string,email: string, token: string) {
+  constructor(id: string, username: string, email: string, token: string) {
     this.id = id;
     this.username = username;
     this.email = email;

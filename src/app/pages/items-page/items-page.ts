@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ItemsApiService } from '../../service/ItemsApi.service';
 import { ItemResponse } from '../../dtos/ItemResponse';
 
@@ -7,10 +7,10 @@ import { ItemResponse } from '../../dtos/ItemResponse';
   styleUrl: './items-page.css',
   templateUrl: './items-page.html',
 })
-export class ItemsPage {
+export class ItemsPage implements OnInit {
   public readonly itemsApiService = inject(ItemsApiService);
 
-  items = signal<ItemResponse[]>([
+  private readonly items = signal<ItemResponse[]>([
     {
       Id: 'test',
       Name: 'test',
@@ -19,7 +19,7 @@ export class ItemsPage {
     },
   ]);
 
-  async ngOnInit() {
+  async ngOnInit() : Promise<void> {
     this.items.set(await this.itemsApiService.getItems());
 
     console.log(this.items());

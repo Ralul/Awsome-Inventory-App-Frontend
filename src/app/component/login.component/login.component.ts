@@ -1,6 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import LoginForm from '../../forms/loginForm';
-import { form, FormField, required, schema } from '@angular/forms/signals';
+import { form, FormField, required } from '@angular/forms/signals';
 
 @Component({
   imports: [FormField],
@@ -9,25 +9,25 @@ import { form, FormField, required, schema } from '@angular/forms/signals';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  submitEvent = output<LoginForm>();
-  cancelEvent = output();
+  public readonly submitEvent = output<LoginForm>();
+  public readonly cancelEvent = output();
 
-  loginModel = signal<LoginForm>({
+  private readonly loginModel = signal<LoginForm>({
     email: '',
-    password: ''
+    password: '',
   } as LoginForm);
 
-  loginForm = form(this.loginModel, (schema) => {
+  protected loginForm = form(this.loginModel, (schema) => {
     required(schema.password);
     required(schema.email);
   });
 
-  onSubmit(event: Event) {
+  protected onSubmit(event: Event): void {
     event.preventDefault();
     this.submitEvent.emit(this.loginModel());
   }
 
-  onCancel() {
+  protected onCancel(): void {
     this.cancelEvent.emit();
   }
 }

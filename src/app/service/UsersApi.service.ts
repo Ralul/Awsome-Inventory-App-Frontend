@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { RegisterRequest } from '../dtos/registerRequest';
 import { UserResponse } from '../dtos/userResponse';
 import LoginRequest from '../dtos/loginRequest';
+import RegisterRequest from '../dtos/registerRequest';
 
 @Injectable({
   providedIn: 'root',

@@ -1,23 +1,21 @@
-<h1>
-  ItemsPage Overview
-</h1>
+<h1>ItemsPage Overview</h1>
 <div>
   <table>
     <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Bar-Code</th>
-    </tr>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Bar-Code</th>
+      </tr>
     </thead>
     <tbody>
-      @for (item of items(); track item.Id;) {
+      @for (item of items(); track item.Id) {
         <tr>
-          <td>{{item.Id }}</td>
-          <td>{{item.Name }}</td>
-          <td>{{item.Description }}</td>
-          <td>{{item.BarCode }}</td>
+          <td>{{ item.Id }}</td>
+          <td>{{ item.Name }}</td>
+          <td>{{ item.Description }}</td>
+          <td>{{ item.BarCode }}</td>
         </tr>
       }
     </tbody>

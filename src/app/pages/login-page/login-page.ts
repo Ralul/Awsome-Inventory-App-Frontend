@@ -13,16 +13,15 @@ import { AuthenticationService } from '../../service/Authentication.service';
 })
 export class LoginPage {
   private readonly userApiService = inject(UsersApiService);
-  private readonly authentication = inject(AuthenticationService)
+  private readonly authentication = inject(AuthenticationService);
 
-   async OnSubmit(form: LoginForm) {
-     const request = {
-       email: form.email,
-       password: form.password,
-     } as LoginRequest;
-     const response = await this.userApiService.authenticate(request);
+  async OnSubmit(form: LoginForm) : Promise<void> {
+    const request = {
+      email: form.email,
+      password: form.password,
+    } as LoginRequest;
+    const response = await this.userApiService.authenticate(request);
 
-     this.authentication.setUser(response);
-   }
-
+    this.authentication.setUser(response);
+  }
 }

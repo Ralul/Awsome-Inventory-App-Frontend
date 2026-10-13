@@ -1,6 +1,6 @@
-export default interface IUserResponse {
+export type TUserResponse = {
   id: string;
   username: string;
   email: string;
   token: string;
-}
+};

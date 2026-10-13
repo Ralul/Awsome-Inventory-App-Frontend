@@ -1,15 +1,11 @@
 <form (submit)="onSubmit($event)">
   <div>
-    <label>
-      E-Mail
-    </label>
-    <input type="email" [formField]="loginForm.email" />
+    <label for="email"> E-Mail </label>
+    <input id="email" type="email" [formField]="loginForm.email" />
   </div>
   <div>
-    <label>
-      Password
-    </label>
-    <input type="password" [formField]="loginForm.password" />
+    <label for="password"> Password </label>
+    <input id="password" type="password" [formField]="loginForm.password" />
   </div>
   <div>
     <button type="submit">Submit</button>

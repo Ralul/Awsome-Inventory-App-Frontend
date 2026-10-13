@@ -1,6 +1,6 @@
 import { Component, output, signal } from '@angular/core';
-import { RegisterForm } from '../../forms/registerForm';
-import { form, FormField, required, submit } from '@angular/forms/signals';
+import { form, FormField, required } from '@angular/forms/signals';
+import RegisterForm from '../../forms/registerForm';
 
 @Component({
   imports: [FormField],
@@ -9,22 +9,26 @@ import { form, FormField, required, submit } from '@angular/forms/signals';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  submitEvent = output<RegisterForm>();
-  cancelEvent = output();
+  public readonly submitEvent = output<RegisterForm>();
+  public readonly cancelEvent = output();
 
-  registerModel = signal<RegisterForm>({
+  private readonly registerModel = signal<RegisterForm>({
     username: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   });
 
-  registerForm = form(this.registerModel, (schema) => {
+  protected registerForm = form(this.registerModel, (schema) => {
     required(schema.username);
   });
 
-  onSubmit(event: Event) {
+  protected onSubmit(event: Event): void {
     event.preventDefault();
-    this.submitEvent.emit(this.registerModel())
+    this.submitEvent.emit(this.registerModel());
+  }
+
+  protected cancel(): void {
+    this.cancelEvent.emit();
   }
 }

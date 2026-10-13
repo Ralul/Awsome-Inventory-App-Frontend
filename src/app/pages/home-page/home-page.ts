@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/Authentication.service';
 
 @Component({
@@ -7,11 +7,11 @@ import { AuthenticationService } from '../../service/Authentication.service';
   styleUrl: './home-page.css',
   templateUrl: './home-page.html',
 })
-export class HomePage {
-  private readonly authenication = inject(AuthenticationService)
-  public isLoggedIn : boolean = false;
+export class HomePage implements OnInit {
+  private readonly authentication = inject(AuthenticationService);
+  public isLoggedIn = false;
 
-  ngOnInit() {
-    this.isLoggedIn = this.authenication.isLoggedIn();
+  ngOnInit(): void {
+    this.isLoggedIn = this.authentication.isLoggedIn();
   }
 }

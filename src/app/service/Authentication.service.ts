@@ -2,16 +2,16 @@ import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { UserResponse } from '../dtos/userResponse';
 import { jwtDecode } from 'jwt-decode';
 import moment from 'moment';
-import IUserResponse from '../Interfaces/IUserResponse';
 import { isPlatformBrowser } from '@angular/common';
+import { TUserResponse } from '../Interfaces/TUserResponse';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   private user: UserResponse | undefined;
-  private platformId = inject(PLATFORM_ID)
+  private platformId = inject(PLATFORM_ID);
 
-  isLoggedIn(): boolean {
-    this.checkForLocalStorage()
+  public isLoggedIn(): boolean {
+    this.checkForLocalStorage();
 
     if (this.user !== undefined) {
       const result = jwtDecode(this.user.token);
@@ -21,16 +21,15 @@ export class AuthenticationService {
         }
       }
     }
-
     return false;
   }
 
-  setUser(user: UserResponse) {
+  public setUser(user: UserResponse): void {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getToken(): string {
+  public getToken(): string {
     if (this.user !== undefined) {
       return this.user.token;
     } else {
@@ -38,11 +37,11 @@ export class AuthenticationService {
     }
   }
 
-  private checkForLocalStorage() {
+  private checkForLocalStorage(): void {
     if (this.user === undefined && isPlatformBrowser(this.platformId)) {
       const str = localStorage.getItem('user');
       if (str !== null) {
-        this.user = JSON.parse(str) as IUserResponse;
+        this.user = JSON.parse(str) as TUserResponse;
       }
     }
   }
